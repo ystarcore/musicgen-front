@@ -9,7 +9,6 @@ export default function Footer() {
         <Box
           component={"ul"}
           sx={{ listStyle: "none" }}
-          listStyle={"none"}
           display={"flex"}
           gap={"12px"}
           flexDirection={"column"}
