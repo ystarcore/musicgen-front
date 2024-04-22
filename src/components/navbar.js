@@ -16,7 +16,7 @@ import Image from "next/image";
 
 const pages = ["Overview", "Features", "Pricing", "Contact"];
 
-function NavBar() {
+export default function NavBar () {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleNavigation = (e, id) => {
@@ -214,5 +214,3 @@ function NavBar() {
     </AppBar>
   );
 }
-
-export default NavBar;

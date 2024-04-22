@@ -1,5 +1,6 @@
+"use client";
 import styles from "./page.module.css";
-import NavBar from "../components/navbar";
+import NavBar from "@/components/navbar";
 import Box from "@mui/material/Box";
 import Footer from "@/components/footer";
 
