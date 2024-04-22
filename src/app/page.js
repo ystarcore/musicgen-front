@@ -18,7 +18,7 @@ export default function Home() {
       <NavBar />
 
       <Box
-        componet={"section"}
+        component={"section"}
         sx={{ height: { xs: `calc(100vh - 65px)`, md: `calc(693px - 65px)` } }}
       >
         <Box
@@ -63,7 +63,7 @@ export default function Home() {
           >
             {skills.map((item, index) => (
               <Box
-                componet={"h3"}
+                component={"h3"}
                 key={index}
                 textAlign={"center"}
                 padding={"8px 23px"}

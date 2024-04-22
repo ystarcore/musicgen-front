@@ -16,7 +16,7 @@ import Image from "next/image";
 
 const pages = ["Overview", "Features", "Pricing", "Contact"];
 
-export default function NavBar () {
+function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleNavigation = (e, id) => {
@@ -147,7 +147,7 @@ export default function NavBar () {
                   AI Voices
                 </Typography>
                 <Typography
-                  variant="body2"
+                  component={"body2"}
                   sx={{ lineHeight: "9px", fontSize: "8px", fontWeight: 500 }}
                 >
                   All of community uploaded voices.
@@ -176,7 +176,7 @@ export default function NavBar () {
                   Duets
                 </Typography>
                 <Typography
-                  variant="body2"
+                  component={"body2"}
                   sx={{ lineHeight: "9px", fontSize: "8px", fontWeight: 500 }}
                 >
                   Create duets with multiple voices!
@@ -201,7 +201,7 @@ export default function NavBar () {
                   Custom Voices
                 </Typography>
                 <Typography
-                  variant="body2"
+                  component={"body2"}
                   sx={{ lineHeight: "9px", fontSize: "8px", fontWeight: 500 }}
                 >
                   Train custom voices with your own datasets!
@@ -214,3 +214,5 @@ export default function NavBar () {
     </AppBar>
   );
 }
+
+export default NavBar;

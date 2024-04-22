@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Box from "@mui/material/Box";
 import Image from "next/image";
@@ -6,7 +5,12 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer>
-      <Box display={"flex"} justifyContent={"space-evenly"} marginTop={"67px"}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-evenly"}
+        paddingTop={"67px"}
+        borderTop={"1px solid #fff"}
+      >
         <Box
           component={"ul"}
           sx={{ listStyle: "none" }}

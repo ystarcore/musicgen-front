@@ -21,48 +21,50 @@ export default function Drawer({ list }) {
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={"8px"}>
-      {list.map((faq, index) => (
-        <Accordion
-          key={index}
-          expanded={expandedId === index}
-          onChange={() => handleExpansion(index)}
-          slots={{ transition: Fade }}
-          slotProps={{ transition: { timeout: 400 } }}
-          sx={{
-            paddingBlock: "12px",
-            paddingInline: "24px",
-            borderRadius: "14px",
-            backgroundColor: "rgba(16, 15, 18, 1)",
-            "& .MuiAccordion-region": {
-              height: expandedId === index ? "auto" : 0,
-            },
-            "& .MuiAccordionDetails-root": {
-              display: expandedId === index ? "block" : "none",
-            },
-          }}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: "#fff" }} />}
-            aria-controls={`panel${index + 1}-content`}
-            id={`panel${index + 1}-header`}
+    <>
+      <Box display={"flex"} flexDirection={"column"} gap={"8px"}>
+        {list.map((faq, index) => (
+          <Accordion
+            key={index}
+            expanded={expandedId === index}
+            onChange={() => handleExpansion(index)}
+            slots={{ transition: Fade }}
+            slotProps={{ transition: { timeout: 400 } }}
+            sx={{
+              paddingBlock: "12px",
+              paddingInline: "24px",
+              borderRadius: "14px",
+              backgroundColor: "rgba(16, 15, 18, 1)",
+              "& .MuiAccordion-region": {
+                height: expandedId === index ? "auto" : 0,
+              },
+              "& .MuiAccordionDetails-root": {
+                display: expandedId === index ? "block" : "none",
+              },
+            }}
           >
-            <Typography
-              sx={{ fontSize: "20px", fontWeight: 500, color: "#fff" }}
-              component={"h3"}
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon sx={{ color: "#fff" }} />}
+              aria-controls={`panel${index + 1}-content`}
+              id={`panel${index + 1}-header`}
             >
-              {faq.title}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: 400, color: "#fff" }}
-            >
-              {faq.description}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </Box>
+              <Typography
+                sx={{ fontSize: "20px", fontWeight: 500, color: "#fff" }}
+                component={"h3"}
+              >
+                {faq.title}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ fontSize: "14px", fontWeight: 400, color: "#fff" }}
+              >
+                {faq.description}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Box>
+    </>
   );
 }
