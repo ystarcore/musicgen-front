@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import "./component.module.css";
 
 export default function Drawer({ list }) {
   const [expandedId, setExpandedId] = React.useState(300);
@@ -31,9 +30,9 @@ export default function Drawer({ list }) {
             slots={{ transition: Fade }}
             slotProps={{ transition: { timeout: 400 } }}
             sx={{
-              paddingBlock: "12px",
+              paddingBlock: "9px",
               paddingInline: "24px",
-              borderRadius: "14px",
+              borderRadius: "14px !important",
               backgroundColor: "rgba(16, 15, 18, 1)",
               "& .MuiAccordion-region": {
                 height: expandedId === index ? "auto" : 0,

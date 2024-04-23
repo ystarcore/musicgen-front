@@ -1,25 +1,25 @@
 "use client";
 import {
-  useMediaQuery,
   FormControl,
   TextField,
   InputAdornment,
   Box,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Login(props) {
+export default function SignUp(props) {
   const isMobile = useMediaQuery("(max-width:900px)");
   const router = useRouter();
 
-  const openSignUp = () => {
+  const openLogin = () => {
     if (isMobile) {
-      router.push("signUp");
+      router.push("logIn");
     } else {
-      props.openSignUp();
+      props.openLogIn();
     }
   };
 
@@ -35,10 +35,10 @@ export default function Login(props) {
       >
         <Image src="/images/whiteLogo.svg" width={54} height={54} alt="brand" />
         <Box as="h2" fontSize={36} fontWeight={500}>
-          Signin
+          Create Account
         </Box>
         <Box as="h3" fontSize={18} fontWeight={400}>
-          Sign in to your account
+          Create an account
         </Box>
       </Box>
       <form style={{ width: "100%" }}>
@@ -80,11 +80,11 @@ export default function Login(props) {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Box component="label" fontSize={16} fontWeight={400}>
+              <Box as="label" fontSize={16} fontWeight={400}>
                 Password
               </Box>
               <Box
-                component="span"
+                as="span"
                 fontSize={16}
                 color="#AD00FF"
                 sx={{ cursor: "pointer" }}
@@ -97,7 +97,55 @@ export default function Login(props) {
               id="password"
               placeholder="Enter your password"
               type="password"
-              autoComplete="current-password"
+              autoComplete="new-password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Image
+                      src="/images/eye.svg"
+                      alt="eye"
+                      width={24}
+                      height={24}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                height: "48px",
+                border: "1px solid white",
+                borderRadius: "8px",
+                "& input": { color: "#fff", paddingY: "12.5px" },
+                "& fieldset": { border: "none" },
+              }}
+            />
+          </FormControl>
+          <FormControl
+            fullWidth
+            sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Box as="label" fontSize={16} fontWeight={400}>
+                Confirm Password
+              </Box>
+              <Box
+                as="span"
+                fontSize={16}
+                color="#AD00FF"
+                sx={{ cursor: "pointer" }}
+              >
+                Forgot?
+              </Box>
+            </Box>
+            <TextField
+              fullWidth
+              id="confirm_password"
+              placeholder="Enter your password"
+              type="password"
+              autoComplete="new-password"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -141,7 +189,7 @@ export default function Login(props) {
             }}
             type="submit"
           >
-            Sign in
+            Create account
           </Button>
           <Button
             disabled
@@ -170,9 +218,9 @@ export default function Login(props) {
               role="button"
               color="#AD00FF"
               sx={{ cursor: "pointer" }}
-              onClick={openSignUp}
+              onClick={openLogin}
             >
-              Sign Up
+              Log in
             </Box>
           </Box>
         </Box>

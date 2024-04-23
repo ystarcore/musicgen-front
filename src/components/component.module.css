@@ -1,3 +1,9 @@
-.MuiAccordion-root .Mui-expanded {
-    margin: 0 !important
+.linkLinks{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.linkHeader{
+    font-size: 15px;
+    font-weight: 500;
 }

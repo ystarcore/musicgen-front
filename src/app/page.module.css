@@ -1,3 +1,7 @@
 .main {
   min-height: 100vh;
 }
+
+.slick-slide{
+  width: auto !important;
+}

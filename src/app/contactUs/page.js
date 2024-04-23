@@ -1,8 +1,6 @@
-"use client";
 import { Box, Button, TextField, FormControl } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import Footer from "../../components/footer";
 
 export default function ContactUs() {
   return (
@@ -37,14 +35,7 @@ export default function ContactUs() {
             </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            marginTop: "80px",
-            maxWidth: "964px",
-            width: "90%",
-            marginBottom: "130px",
-          }}
-        >
+        <Box sx={{ marginTop: "80px", maxWidth: "964px", width: "90%" }}>
           <form
             style={{
               width: "100%",
@@ -62,60 +53,55 @@ export default function ContactUs() {
             >
               <FormControl fullWidth>
                 <TextField
-                  fullwidth
+                  fullWidth
                   id={"first_name"}
                   placeholder={"First Name*"}
                   type={"text"}
                   sx={{
-                    height: "58px",
                     borderRadius: "10px",
                     backgroundColor: "rgba(16, 15, 18, 1)",
-                    "& input": { color: "#fff" },
+                    "& input": { color: "#fff", paddingY: "17.5px" },
                   }}
                 />
               </FormControl>
               <FormControl fullWidth>
                 <TextField
-                  fullwidth
+                  fullWidth
                   id={"last_name"}
                   placeholder={"Last Name*"}
                   type={"text"}
                   sx={{
-                    height: "58px",
                     borderRadius: "10px",
                     backgroundColor: "rgba(16, 15, 18, 1)",
-                    border: "1px solid white",
                     "& fieldset": { border: "none" },
-                    "& input": { color: "#fff" },
+                    "& input": { color: "#fff", paddingY: "17.5px" },
                   }}
                 />
               </FormControl>
             </Box>
             <FormControl fullWidth>
               <TextField
-                fullwidth
+                fullWidth
                 id={"email"}
                 placeholder={"Email*"}
                 type={"email"}
                 sx={{
-                  height: "58px",
                   borderRadius: "10px",
                   backgroundColor: "rgba(16, 15, 18, 1)",
-                  "& input": { color: "#fff" },
+                  "& input": { color: "#fff", paddingY: "17.5px" },
                 }}
               />
             </FormControl>
             <FormControl fullWidth>
               <TextField
-                fullwidth
+                fullWidth
                 id={"phone_number"}
                 placeholder={"Phone Number*"}
                 type={"number"}
                 sx={{
-                  height: "58px",
                   borderRadius: "10px",
                   backgroundColor: "rgba(16, 15, 18, 1)",
-                  "& input": { color: "#fff" },
+                  "& input": { color: "#fff", paddingY: "17.5px" },
                 }}
               />
             </FormControl>
@@ -123,7 +109,7 @@ export default function ContactUs() {
               <TextField
                 multiline
                 minRows={4}
-                fullwidth
+                fullWidth
                 id={"message"}
                 placeholder={"Your message..."}
                 type={"text"}
@@ -145,6 +131,7 @@ export default function ContactUs() {
                 width: "100%",
                 background:
                   "linear-gradient(to right, rgba(43, 17, 115, 1), rgba(89, 26, 216, 1), rgba(239, 26, 204, 1))",
+                borderRadius: "8px",
               }}
             >
               Send
@@ -152,7 +139,6 @@ export default function ContactUs() {
           </form>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 }
