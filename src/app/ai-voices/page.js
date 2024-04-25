@@ -61,6 +61,7 @@ export default function AiVoiceList() {
               sx={{
                 height: "57px",
                 backgroundColor: "#7E22CE",
+                "&.MuiButton-root:hover": { backgroundColor: "#7E22CE" },
                 borderRadius: "10px",
                 fontSize: "16px",
                 fontWeight: 500,

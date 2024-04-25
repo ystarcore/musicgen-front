@@ -34,6 +34,7 @@ function NavBar() {
   const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [authModal, setAuthModal] = React.useState("");
+  const [isLogin, setIsLogin] = React.useState(false);
   const isMobile = useMediaQuery("(max-width:900px)");
 
   const handleNavigation = (e, index) => {
@@ -65,6 +66,11 @@ function NavBar() {
     } else {
       setAuthModal("signUp");
     }
+  };
+
+  const onLogin = () => {
+    setIsLogin(true);
+    closeAuth();
   };
 
   return (
@@ -127,23 +133,57 @@ function NavBar() {
                 </Typography>
               ))}
             </Box>
-            <Button
-              variant="contained"
-              onClick={openAuth}
-              sx={{
-                p: 0,
-                fontSize: "14px",
-                height: "36px",
-                width: "81px",
-                background: "#fff",
-                borderRadius: "40px",
-                color: "#000",
-                textTransform: "none",
-                "&.MuiButton-root:hover": { background: "#fff" },
-              }}
-            >
-              Sign In
-            </Button>
+            <Box>
+              {isLogin ? (
+                <Box display={"flex"} alignItems={"center"} gap={"20px"}>
+                  <Button
+                    variant="contained"
+                    onClick={() => router.push("/pricing")}
+                    sx={{
+                      p: 0,
+                      fontSize: "14px",
+                      height: "32px",
+                      width: "96px",
+                      background:
+                        "linear-gradient(to right, rgba(43, 17, 115, 1), rgba(89, 26, 216, 1), rgba(239, 26, 204, 1))",
+                      borderRadius: "8px",
+                      color: "#fff",
+                      textTransform: "none",
+                    }}
+                  >
+                    Upgrade
+                  </Button>
+                  <Image
+                    src={"/images/trump.png"}
+                    alt="profile"
+                    width={43}
+                    height={43}
+                    style={{
+                      borderRadius: "50%",
+                      border: "2px solid #fff",
+                    }}
+                  />
+                </Box>
+              ) : (
+                <Button
+                  variant="contained"
+                  onClick={openAuth}
+                  sx={{
+                    p: 0,
+                    fontSize: "14px",
+                    height: "36px",
+                    width: "81px",
+                    background: "#fff",
+                    borderRadius: "40px",
+                    color: "#000",
+                    textTransform: "none",
+                    "&.MuiButton-root:hover": { background: "#fff" },
+                  }}
+                >
+                  Sign In
+                </Button>
+              )}
+            </Box>
 
             <Backdrop open={Boolean(anchorElNav)} onClick={handleCloseNavMenu}>
               <Popper
@@ -335,7 +375,7 @@ function NavBar() {
               />
             </Box>
             {authModal === "logIn" ? (
-              <Login openSignUp={openSignUp} />
+              <Login openSignUp={openSignUp} onLogin={onLogin} />
             ) : (
               <SignUp openLogIn={openAuth} />
             )}

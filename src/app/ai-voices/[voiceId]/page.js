@@ -1,9 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Drawer from "../../../components/Drawer";
-import NavBar from "../../../components/navbar";
-import Footer from "../../../components/footer";
 
 const faqs = [
   {
@@ -34,14 +33,18 @@ const faqs = [
 ];
 
 export default function SingleVoice() {
+  const [voice, setVoice] = useState("create");
   return (
     <>
-      <NavBar />
       <Box
         component={"section"}
         display={"flex"}
         sx={{
-          margin: { sm: "25px 15px", md: "50px 25px", lg: "100px 50px" },
+          margin: {
+            sm: "25px 15px",
+            md: "50px 25px",
+            lg: "150px 50px 100px 50px",
+          },
           flexDirection: { md: "row", lg: "row" },
         }}
       >
@@ -100,7 +103,9 @@ export default function SingleVoice() {
             alignItems={"center"}
             fontWeight={500}
             fontSize={"14px"}
-            sx={{ gap: { sm: "10px", md: "20px" } }}
+            sx={{
+              gap: { sm: "10px", md: "20px" },
+            }}
           >
             <Box
               textAlign={"center"}
@@ -177,130 +182,307 @@ export default function SingleVoice() {
         <Box display={"flex"} alignItems={"center"} gap={"30px"}>
           <Box
             component={"h1"}
-            fontWeight={700}
+            fontWeight={voice !== "speech" ? 700 : 400}
+            onClick={() => setVoice("create")}
             sx={{
+              opacity: voice !== "speech" ? "" : "60%",
               fontSize: { sm: "15px", md: "20px", lg: "20px" },
+              cursor: "pointer",
             }}
           >
             Create Conversion
           </Box>
           <Box
             component={"h2"}
-            fontWeight={400}
+            fontWeight={voice === "speech" ? 700 : 400}
+            onClick={() => setVoice("speech")}
             sx={{
-              opacity: "60%",
+              opacity: voice === "speech" ? "" : "60%",
               fontSize: { sm: "15px", md: "20px", lg: "20px" },
+              cursor: "pointer",
             }}
           >
             Text-To-Speech
           </Box>
         </Box>
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          fontWeight={500}
-          fontSize={"14px"}
-          sx={{
-            border: "2px dotted",
-            borderRadius: "24px",
-            height: { sm: "250px", md: "275px", lg: "325px" },
-          }}
-        >
-          <Box display={"flex"} flexDirection={"column"} gap={"40px"}>
-            <Box
-              display={"flex"}
-              gap={"40px"}
-              alignItems={"center"}
-              sx={{ backgroundColor: "#100F12" }}
-            >
-              <Box>
-                <Image
-                  height={58}
-                  src={"/images/Music.svg"}
-                  width={58}
-                  alt={"Music"}
-                  title="green iguana"
-                  style={{
-                    borderRadius: "100px",
-                  }}
-                />
-              </Box>
+        {
+          {
+            create: (
               <Box
-                component={"h3"}
-                fontWeight={600}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                fontWeight={500}
+                fontSize={"14px"}
                 sx={{
-                  fontSize: { md: "28px", lg: "32px" },
+                  border: "2px dotted",
+                  borderRadius: "24px",
+                  height: { sm: "250px", md: "275px", lg: "325px" },
                 }}
               >
-                Provide an input for Donald Trump
-              </Box>
-            </Box>
-            <Box
-              component={"div"}
-              display={"flex"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                gap={"20px"}
-              >
-                <Box>
-                  <Image
-                    height={30}
-                    src={"/images/YouTube.svg"}
-                    width={30}
-                    alt={"YouTube"}
-                    title="green iguana"
-                  />
+                <Box display={"flex"} flexDirection={"column"} gap={"40px"}>
+                  <Box display={"flex"} gap={"40px"} alignItems={"center"}>
+                    <Box>
+                      <Image
+                        height={58}
+                        src={"/images/Music.svg"}
+                        width={58}
+                        alt={"Music"}
+                        title="green iguana"
+                        style={{
+                          borderRadius: "100px",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      component={"h3"}
+                      fontWeight={600}
+                      sx={{
+                        fontSize: { md: "28px", lg: "32px" },
+                      }}
+                    >
+                      Provide an input for Donald Trump
+                    </Box>
+                  </Box>
+                  <Box
+                    component={"div"}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                  >
+                    <Box
+                      component={"div"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      gap={"20px"}
+                      sx={{
+                        borderRadius: "16px",
+                        backgroundColor: "#100F12",
+                        padding: "11px 20px",
+                      }}
+                    >
+                      <Box>
+                        <Image
+                          height={30}
+                          src={"/images/YouTube.svg"}
+                          width={30}
+                          alt={"YouTube"}
+                          title="green iguana"
+                        />
+                      </Box>
+                      <Box
+                        component={"h3"}
+                        fontWeight={500}
+                        sx={{
+                          opacity: "50%",
+                          fontSize: { sm: "10px", md: "12px", lg: "16px" },
+                        }}
+                      >
+                        Paste a YouTube link...
+                      </Box>
+                    </Box>
+                    <Box
+                      sx={{ fontSize: { sm: "10px", md: "12px", lg: "16px" } }}
+                    >
+                      or
+                    </Box>
+                    <Box
+                      component={"div"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      gap={"20px"}
+                      sx={{
+                        borderRadius: "16px",
+                        backgroundColor: "#100F12",
+                        padding: "11px 20px",
+                      }}
+                    >
+                      <Box>
+                        <Image
+                          height={30}
+                          src={"/images/MusicFile.svg"}
+                          width={30}
+                          title="green iguana"
+                          alt={"MusicFile"}
+                        />
+                      </Box>
+                      <Box
+                        component={"h3"}
+                        fontSize={"16px"}
+                        fontWeight={500}
+                        sx={{
+                          opacity: "50%",
+                          fontSize: { sm: "10px", md: "12px", lg: "16px" },
+                        }}
+                      >
+                        Drop an audio file...
+                      </Box>
+                    </Box>
+                  </Box>
                 </Box>
+              </Box>
+            ),
+            speech: (
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                fontWeight={500}
+                fontSize={"14px"}
+                sx={{
+                  mt: "20px",
+                  gap: "12px",
+                }}
+              >
                 <Box
-                  component={"h3"}
-                  fontWeight={500}
+                  component={"h1"}
+                  fontWeight={400}
                   sx={{
-                    opacity: "50%",
-                    fontSize: { sm: "10px", md: "12px", lg: "16px" },
+                    fontSize: { sm: "15px", md: "20px", lg: "20px" },
                   }}
                 >
-                  Paste a YouTube link...
+                  Text to speech
                 </Box>
-              </Box>
-              <Box sx={{ fontSize: { sm: "10px", md: "12px", lg: "16px" } }}>
-                or
-              </Box>
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                gap={"20px"}
-              >
-                <Box>
-                  <Image
-                    height={30}
-                    src={"/images/MusicFile.svg"}
-                    width={30}
-                    title="green iguana"
-                    alt={"MusicFile"}
-                  />
+                <Box component={"div"}>
+                  <FormControl fullWidth>
+                    <TextField
+                      multiline
+                      minRows={6}
+                      fullWidth
+                      id={"message"}
+                      placeholder={"Enter the text you want your model to say!"}
+                      type={"text"}
+                      sx={{
+                        backgroundColor: "rgba(16, 15, 18, 1)",
+                        borderRadius: "24px",
+                        fontSize: "16px",
+                        fontWeight: 400,
+                        "& textarea": { color: "#fff" },
+                      }}
+                    />
+                  </FormControl>
                 </Box>
                 <Box
-                  component={"h3"}
-                  fontSize={"16px"}
-                  fontWeight={500}
-                  sx={{
-                    opacity: "50%",
-                    fontSize: { sm: "10px", md: "12px", lg: "16px" },
-                  }}
+                  component={"div"}
+                  display={"flex"}
+                  justifyContent={"space-between"}
                 >
-                  Drop an audio file...
+                  <Box
+                    component={"div"}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    sx={{
+                      gap: "10px",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      endIcon={
+                        <Image
+                          height={17}
+                          src={"/images/DownTriangle.svg"}
+                          width={17}
+                          alt={"Share"}
+                          title="DownTriangle"
+                          style={{
+                            borderRadius: "100px",
+                          }}
+                        />
+                      }
+                      sx={{
+                        fontSize: "16px",
+                        height: "45px",
+                        width: "132px",
+                        background: "#fff",
+                        borderRadius: "10px",
+                        fontWeight: 500,
+                        color: "#7E22CE",
+                        textTransform: "none",
+                        "&.MuiButton-root:hover": { background: "#fff" },
+                      }}
+                    >
+                      American
+                    </Button>
+                    <Button
+                      variant="contained"
+                      endIcon={
+                        <Image
+                          height={17}
+                          src={"/images/DownTriangle.svg"}
+                          width={17}
+                          alt={"Share"}
+                          title="DownTriangle"
+                          style={{
+                            borderRadius: "100px",
+                          }}
+                        />
+                      }
+                      sx={{
+                        fontSize: "16px",
+                        height: "45px",
+                        width: "132px",
+                        background: "#fff",
+                        borderRadius: "10px",
+                        fontWeight: 500,
+                        color: "#7E22CE",
+                        textTransform: "none",
+                        "&.MuiButton-root:hover": { background: "#fff" },
+                      }}
+                    >
+                      Expression
+                    </Button>
+                    <Button
+                      variant="contained"
+                      endIcon={
+                        <Image
+                          height={17}
+                          src={"/images/DownTriangle.svg"}
+                          width={17}
+                          alt={"Share"}
+                          title="DownTriangle"
+                          style={{
+                            borderRadius: "100px",
+                          }}
+                        />
+                      }
+                      sx={{
+                        fontSize: "16px",
+                        height: "45px",
+                        width: "132px",
+                        background: "#fff",
+                        borderRadius: "10px",
+                        fontWeight: 500,
+                        color: "#7E22CE",
+                        textTransform: "none",
+                        "&.MuiButton-root:hover": { background: "#fff" },
+                      }}
+                    >
+                      Speed
+                    </Button>
+                  </Box>
+                  <Box>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        // p: 0,
+                        fontSize: "16px",
+                        height: "45px",
+                        width: "132px",
+                        background: "#7E22CE",
+                        borderRadius: "10px",
+                        fontWeight: 500,
+                        color: "#fff",
+                        textTransform: "none",
+                        "&.MuiButton-root:hover": { background: "#7E22CE" },
+                      }}
+                    >
+                      Create
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          </Box>
-        </Box>
+            ),
+          }[voice]
+        }
       </Box>
       <Box
         component={"section"}

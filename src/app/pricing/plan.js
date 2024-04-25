@@ -20,7 +20,7 @@ const features = [
   { icon: "/images/true.svg", text: "Text to Speech Access" },
 ];
 
-export default function SinglePlan() {
+export default function SinglePlan(props) {
   return (
     <>
       <Box
@@ -31,7 +31,7 @@ export default function SinglePlan() {
         display={"flex"}
         flexDirection={"column"}
         justifycontent={"center"}
-        backgroundColor={"rgba(16, 15, 18, 1)"}
+        sx={{ background: props.colors.background }}
       >
         <Box
           component={"h4"}
@@ -41,7 +41,10 @@ export default function SinglePlan() {
           fontWeight={800}
           height={"45px"}
           justifyContent={"center"}
-          sx={{ backgroundColor: "#7E22CE" }}
+          sx={{
+            backgroundColor: props.colors.header,
+            color: props.colors.text,
+          }}
         >
           Starter{" "}
         </Box>
@@ -52,6 +55,7 @@ export default function SinglePlan() {
           justifyContent={"center"}
           marginTop={"41px"}
           marginBottom={"20px"}
+          color={props.colors.text}
         >
           <Box componet={"h5"} fontSize="36px" fontWeight={700}>
             $1.99
@@ -67,14 +71,14 @@ export default function SinglePlan() {
             fontSize: "16px",
             height: "48px",
             fontWeight: 600,
-            background: "#7E22CE",
+            background: props.colors.button,
             borderRadius: "14px",
-            color: "#fff",
+            color: props.colors.text,
             textTransform: "none",
             margin: "auto",
             maxWidth: "85%",
             width: "356px",
-            "&.MuiButton-root:hover": { background: "#7E22CE" },
+            "&.MuiButton-root:hover": { background: props.colors.button },
           }}
         >
           Get Started
@@ -83,14 +87,20 @@ export default function SinglePlan() {
           component={"p"}
           fontSize="13px"
           fontWeight={700}
-          color={"#7E22CE"}
+          color={props.colors.text}
           textAlign={"center"}
           sx={{ opacity: "80%", marginTop: "8px" }}
         >
           No commitment - cancel anytime!
         </Box>
         <Box marginX={"65px"} mt={"40px"} mb={"80px"}>
-          <Box componet={"h6"} fontSize={"14px"} fontWeight={700} mb={"14px"}>
+          <Box
+            componet={"h6"}
+            fontSize={"14px"}
+            fontWeight={700}
+            mb={"14px"}
+            color={props.colors.text}
+          >
             WHAT YOU GET
           </Box>
           <Box
@@ -110,7 +120,7 @@ export default function SinglePlan() {
                   component={"p"}
                   fontSize={"16px"}
                   fontWeight={400}
-                  color={"#fff"}
+                  color={props.colors.text}
                 >
                   {item.text}
                 </Box>

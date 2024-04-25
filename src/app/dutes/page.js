@@ -12,9 +12,15 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 
-const artist = ["AI Donald Trump Model", "Juice wrld (Better)", "AI Ronaldo"];
+const artist = [
+  { name: "AI Donald Trump Model", image: "/images/trump.png" },
+  { name: "Juice wrld (Better)", image: "/images/juice.png" },
+  { name: "AI Ronaldo", image: "/images/imageOne.png" },
+];
 export default function Dutes() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [savedArtist, setSavedArtist] = React.useState([]);
+  const [lastArtist, setLastArtist] = React.useState({});
 
   const handleOpenArtist = (e, index) => {
     setAnchorEl(e.currentTarget);
@@ -22,6 +28,12 @@ export default function Dutes() {
 
   const handleCloseArtist = (e) => {
     setAnchorEl(null);
+  };
+  const selectArtistFromList = (name) => {
+    const currunt = artist.find((item) => item.name === name);
+    setLastArtist(currunt);
+    setSavedArtist((prev) => [currunt, ...prev]);
+    handleCloseArtist();
   };
 
   return (
@@ -36,6 +48,7 @@ export default function Dutes() {
           </Box>
           <Box
             sx={{
+              position: "relative",
               height: "108px",
               flexShrink: 0,
               width: "108px",
@@ -44,7 +57,16 @@ export default function Dutes() {
               my: "50px",
               border: "1px solid #fff",
             }}
-          />
+          >
+            {lastArtist.image && (
+              <Image
+                src={lastArtist.image}
+                alt={lastArtist.name}
+                fill
+                style={{ borderRadius: "50%" }}
+              />
+            )}
+          </Box>
           <Box
             style={{ display: "flex" }}
             gap="30px"
@@ -52,7 +74,7 @@ export default function Dutes() {
             as={"section"}
           >
             <HorizontalScrollableBox direction={"row-reverse"}>
-              {[1, 2, 3, 4, 5, 5].map((item) => (
+              {[...savedArtist].map((item) => (
                 <Box
                   key={item}
                   sx={{
@@ -65,7 +87,7 @@ export default function Dutes() {
                   }}
                 >
                   <Image
-                    src={"/images/imageOne.png"}
+                    src={item.image}
                     alt={"user"}
                     fill
                     style={{ borderRadius: "50%" }}
@@ -147,7 +169,7 @@ export default function Dutes() {
                     startAdornment: (
                       <InputAdornment position="start">
                         <Image
-                          src="/images/search.svg"
+                          src="/images/blackSearch.svg"
                           alt="eye"
                           width={24}
                           height={24}
@@ -182,15 +204,17 @@ export default function Dutes() {
                   {artist.map((item) => (
                     <Box
                       as={"li"}
-                      key={item}
+                      key={item.name}
                       display={"flex"}
                       alignItems={"center"}
                       gap={"17.35px"}
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => selectArtistFromList(item.name)}
                     >
                       <Avatar sx={{ width: "35px", height: "35px" }} />
                       <Box display={"flex"} flexDirection={"column"}>
                         <Box as={"h6"} fontWeight={600} fontSize={"16px"}>
-                          {item}
+                          {item.name}
                         </Box>
                         <Box as={"p"} fontWeight={500} fontSize={"7.3px"}>
                           Uploaded By

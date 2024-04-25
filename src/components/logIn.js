@@ -23,6 +23,14 @@ export default function Login(props) {
     }
   };
 
+  const onLogin = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (props.onLogin) {
+      props.onLogin();
+    }
+  };
+
   return (
     <section>
       <Box
@@ -41,7 +49,7 @@ export default function Login(props) {
           Sign in to your account
         </Box>
       </Box>
-      <form style={{ width: "100%" }}>
+      <form style={{ width: "100%" }} onSubmit={onLogin}>
         <Box
           display="flex"
           alignItems="center"

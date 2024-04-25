@@ -24,21 +24,10 @@ const faqs = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
   },
-  {
-    title: "Do I need to upload an acapella?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
 ];
 
 export default function CustomVoice() {
-  const handleOnDropFile = (files) => {
-    console.log("extension", files);
-    // if (files.length > 1) return console.warn("multiple files");
-    // if(files.length === 0){
-    //     // let extension = files[0].n    ame.split('.').pop();
-    // }
-  };
+  const handleOnDropFile = (files) => {};
   const handleChangeInputFile = (e) => {
     e.preventDefault();
     handleOnDropFile(e.target.files);
@@ -117,7 +106,7 @@ export default function CustomVoice() {
               accept="image/png, image/jpg, image/jpeg,"
             />
             <Image
-              src={"images/musicFile.svg"}
+              src={"/images/MusicFile.svg"}
               alt="music"
               width={29.5}
               height={36.5}
