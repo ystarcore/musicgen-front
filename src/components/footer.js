@@ -6,7 +6,16 @@ import styles from "./component.module.css";
 
 export default function Footer() {
   return (
-    <footer style={{ marginTop: "100px" }} className={"footer"}>
+    <footer
+      style={{
+        marginTop: "100px",
+        backgroundImage: `url('/images/Footer.png')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 100%",
+        backgroundColor: "black",
+      }}
+      className={"footer"}
+    >
       <Box
         display="flex"
         justifyContent="space-evenly"

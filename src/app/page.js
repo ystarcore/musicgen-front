@@ -9,6 +9,7 @@ import {
   TextField,
   InputAdornment,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,58 +25,42 @@ const skills = [
   "German",
 ];
 export default function Home() {
+  const maxWidth1500 = useMediaQuery("(max-width:1500px)");
+  const maxWidth1200 = useMediaQuery("(max-width:1200px)");
+  const maxWidth1100 = useMediaQuery("(max-width:1100px)");
+  const maxWidth950 = useMediaQuery("(max-width:950px)");
+  const maxWidth840 = useMediaQuery("(max-width:840px)");
+  const maxWidth430 = useMediaQuery("(max-width:430px)");
+  function getSlidesToShow() {
+    switch (true) {
+      case maxWidth430:
+        return 0.99;
+      case maxWidth840:
+        return 3.5;
+      case maxWidth950:
+        return 2.5;
+      case maxWidth1100:
+        return 3.1;
+      case maxWidth1200:
+        return 3.5;
+      case maxWidth1500:
+        return 4.1;
+      default:
+        return 5.1;
+    }
+  }
+
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4.5,
+    slidesToShow: getSlidesToShow(),
     slidesToScroll: 1,
     initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1500,
-        settings: {
-          slidesToShow: 3.5,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3.5,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
     arrows: false,
+    // customPaging: () => {
+    //     return
+    // }
   };
   return (
     <main className={styles.main}>
@@ -95,6 +80,10 @@ export default function Home() {
           sx={{
             borderBottomLeftRadius: "30px",
             borderBottomRightRadius: "30px",
+            backgroundImage: `url('/images/homeGradiant.png')`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%",
+            backgroundColor: "black",
           }}
         >
           <Box
@@ -193,7 +182,6 @@ export default function Home() {
             },
           }}
           height={"inherit"}
-          backgroundColor={"rgba(255, 255, 255, 0.08)"}
         >
           <Box
             display={"flex"}
@@ -271,7 +259,7 @@ export default function Home() {
           <Box
             sx={{
               position: "absolute",
-              right: "5%",
+              right: { md: "3%", lg: "5%" },
               bottom: 0,
               display: { md: "block", lg: "block" },
             }}
@@ -279,7 +267,7 @@ export default function Home() {
             <Image
               src="/images/MiceImage.svg"
               width={318}
-              height={328}
+              height={318}
               alt="MiceImage"
             />
           </Box>

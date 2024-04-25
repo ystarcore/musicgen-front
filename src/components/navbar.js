@@ -210,7 +210,7 @@ function NavBar() {
                         </Link>
                       </MenuItem>
                       <MenuItem sx={{ paddingInline: "20px" }}>
-                        <Link href="/duets" passHref>
+                        <Link href="/dutes" passHref>
                           <Box
                             sx={{
                               display: "flex",
