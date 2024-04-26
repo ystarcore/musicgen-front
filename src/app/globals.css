@@ -113,3 +113,9 @@ a {
 button {
   text-transform: none !important;
 }
+
+.slick-track {
+  display: flex !important;
+  gap: 40px;
+  align-items: center;
+}
