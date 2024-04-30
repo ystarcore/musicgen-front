@@ -24,7 +24,15 @@ export default function SignUp(props) {
   };
 
   return (
-    <section>
+    <Box
+      as={"section"}
+      width={{ xs: "84.62%", md: "100%" }}
+      margin={"auto"}
+      height={{ xs: "100vh", md: "auto" }}
+      display={{ xs: "flex", md: "block" }}
+      flexDirection="column"
+      justifyContent={"center"}
+    >
       <Box
         display="flex"
         justifyContent="center"
@@ -225,6 +233,6 @@ export default function SignUp(props) {
           </Box>
         </Box>
       </form>
-    </section>
+    </Box>
   );
 }

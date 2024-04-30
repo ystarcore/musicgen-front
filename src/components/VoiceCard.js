@@ -21,7 +21,13 @@ export default function VoiceCard({ imageUrl, title, description }) {
         router.push(`ai-voices/${1}`);
       }}
     >
-      <Box sx={{ position: "relative", width: "100%", aspectRatio: "1.24" }}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          aspectRatio: { xs: "1.55", md: "1.24" },
+        }}
+      >
         <Image
           src={imageUrl}
           fill

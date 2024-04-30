@@ -93,7 +93,11 @@ export default function SinglePlan(props) {
         >
           No commitment - cancel anytime!
         </Box>
-        <Box marginX={"65px"} mt={"40px"} mb={"80px"}>
+        <Box
+          marginX={{ xs: "23px", md: "65px" }}
+          mt={"40px"}
+          mb={{ xs: "23px", md: "80px" }}
+        >
           <Box
             componet={"h6"}
             fontSize={"14px"}
@@ -113,7 +117,11 @@ export default function SinglePlan(props) {
               <Box
                 component={"li"}
                 key={item.text}
-                sx={{ display: "flex", listStyle: "none", gap: "10px" }}
+                sx={{
+                  display: "flex",
+                  listStyle: "none",
+                  gap: { xs: "8px", md: "10px" },
+                }}
               >
                 <Image src={item.icon} alt={"icon"} width={24} height={24} />
                 <Box

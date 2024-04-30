@@ -1,8 +1,11 @@
+"use client";
 import { Box, Button, TextField, FormControl } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { useScreenInfo } from "../../Utils/useScreenInfo"; // Adjust the path as needed
 
 export default function ContactUs() {
+  const { isMobile } = useScreenInfo();
   return (
     <>
       <Box
@@ -17,17 +20,23 @@ export default function ContactUs() {
         <Box mt={"196px"}>
           <Box
             component={"h1"}
-            fontSize={"45px"}
+            fontSize={{ xs: "24px", md: "45px" }}
             color={"#fff"}
+            textAlign={"center"}
             fontWeight={700}
           >
             Contact Us
           </Box>
-          <Box display={"flex"} alignItems={"center"} gap={"16px"}>
-            <Image src="/images/mail.svg" width={24} height={24} alt="mail" />
+          <Box display={"flex"} alignItems={"center"} gap={"16px"} mt={"16px"}>
+            <Image
+              src="/images/mail.svg"
+              width={isMobile ? 20 : 24}
+              height={isMobile ? 20 : 24}
+              alt="mail"
+            />
             <Box
               componet={"p"}
-              fontSize={"16px"}
+              fontSize={{ xs: "12px", md: "16px" }}
               color={"fff"}
               fontWeight={400}
             >
@@ -35,7 +44,13 @@ export default function ContactUs() {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ marginTop: "80px", maxWidth: "964px", width: "90%" }}>
+        <Box
+          sx={{
+            marginTop: { xs: "40px", md: "80px" },
+            maxWidth: "964px",
+            width: "87.69%",
+          }}
+        >
           <form
             style={{
               width: "100%",
@@ -48,6 +63,7 @@ export default function ContactUs() {
             <Box
               display={"flex"}
               alignItems={"center"}
+              flexDirection={{ xs: "column", md: "row" }}
               gap={"20px"}
               width={"100%"}
             >
@@ -127,7 +143,7 @@ export default function ContactUs() {
                 height: "48px",
                 fontSize: "16px",
                 fontWeight: 600,
-                maxWidth: "332px",
+                maxWidth: { xs: "100%", md: "332px" },
                 width: "100%",
                 background:
                   "linear-gradient(to right, rgba(43, 17, 115, 1), rgba(89, 26, 216, 1), rgba(239, 26, 204, 1))",

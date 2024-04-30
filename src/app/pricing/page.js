@@ -50,12 +50,19 @@ export default function Plans() {
           gap={"60px"}
           flexDirection={"column"}
         >
-          <Box display={"flex"} gap={"60px"}>
+          <Box
+            display={"flex"}
+            gap={{ xs: "36px", md: "60px" }}
+            flexDirection={{ xs: "column", md: "row" }}
+            sx={{ margin: "auto", width: { xs: "87.69%", md: "100%" } }}
+          >
             {[1, 2].map((item, index) => (
               <SinglePlan key={item} colors={colors[index]} />
             ))}
           </Box>
-          <SinglePlan colors={colors[2]} />
+          <Box sx={{ margin: "auto", width: { xs: "87.69%", md: "100%" } }}>
+            <SinglePlan colors={colors[2]} />
+          </Box>
         </Box>
       </main>
     </>

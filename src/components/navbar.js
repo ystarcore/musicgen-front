@@ -15,6 +15,7 @@ import {
   Grow,
   Paper,
   useMediaQuery,
+  Menu,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Image from "next/image";
@@ -28,6 +29,14 @@ const pages = [
   { label: "Features", path: "/features" },
   { label: "Pricing", path: "/pricing" },
   { label: "Contact", path: "/contactUs" },
+];
+const settings = [
+  { icon: "/images/blackSearch.svg", title: "My Voices", path: "" },
+  { icon: "/images/blackSearch.svg", title: "My Conversions", path: "" },
+  { icon: "/images/blackSearch.svg", title: "Manage Subscription", path: "" },
+  { icon: "/images/blackSearch.svg", title: "Edit Account", path: "" },
+  { icon: "/images/blackSearch.svg", title: "Delete Account", path: "" },
+  { icon: "/images/blackSearch.svg", title: "Sign Out", path: "" },
 ];
 
 function NavBar() {
@@ -153,16 +162,7 @@ function NavBar() {
                   >
                     Upgrade
                   </Button>
-                  <Image
-                    src={"/images/trump.png"}
-                    alt="profile"
-                    width={43}
-                    height={43}
-                    style={{
-                      borderRadius: "50%",
-                      border: "2px solid #fff",
-                    }}
-                  />
+                  <ProfileOptions />
                 </Box>
               ) : (
                 <Button
@@ -382,6 +382,96 @@ function NavBar() {
           </Box>
         </Fade>
       </Modal>
+    </>
+  );
+}
+
+function ProfileOptions() {
+  const router = useRouter();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleCloseUserMenu = () => {
+    setAnchorEl(null);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  return (
+    <>
+      <Image
+        src={"/images/trump.png"}
+        alt="profile"
+        width={43}
+        height={43}
+        style={{
+          borderRadius: "50%",
+          border: "2px solid #fff",
+        }}
+        onClick={handleOpenUserMenu}
+      />
+      <Menu
+        sx={{
+          mt: "55px",
+          "& .MuiPaper-root": { borderRadius: "12px" },
+          "& ul": {
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            padding: "24px",
+          },
+        }}
+        id="menu-profile"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseUserMenu}
+      >
+        {settings.map((setting) => (
+          <MenuItem
+            key={setting.title}
+            onClick={handleCloseUserMenu}
+            sx={{
+              paddingBlock: "14px",
+              minWidth: "290px",
+              paddingInline: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+              <Image
+                src={setting.icon}
+                alt={setting.title}
+                width={24}
+                height={24}
+              />
+              <Typography
+                textAlign="center"
+                color="#0F003A"
+                fontWeight={700}
+                fontSize="20px"
+              >
+                {setting.title}
+              </Typography>
+            </Box>
+            <Image
+              src={setting.icon}
+              alt={setting.title}
+              width={24}
+              height={24}
+            />
+          </MenuItem>
+        ))}
+      </Menu>
     </>
   );
 }
