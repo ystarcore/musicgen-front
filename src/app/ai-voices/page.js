@@ -26,9 +26,9 @@ export default function AiVoiceList() {
       <main>
         <Box
           component={"section"}
-          pt={"151px"}
           pb={{ xs: "41px", md: 0 }}
           sx={{
+            paddingTop: { xs: "100px", md: "151px" },
             borderBottomLeftRadius: { xs: "12px", md: "none" },
             borderBottomRightRadius: { xs: "12px", md: "none" },
             backgroundImage: {
@@ -124,7 +124,6 @@ export default function AiVoiceList() {
           }}
         >
           <Box
-            display={"grid"}
             sx={{
               justifyContent: "center",
               gridAutoColumns: { xs: "350px", md: "315px" },
@@ -133,6 +132,7 @@ export default function AiVoiceList() {
                 md: "repeat(auto-fill,315px)",
               },
               gap: { xs: "20px", md: "40px" },
+              display: {xs: "block", md: "grid"},
             }}
           >
             {[...Array(33).keys()].map((ele, index) => (

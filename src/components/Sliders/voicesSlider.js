@@ -3,12 +3,14 @@ import { Box } from "@mui/material";
 import Slider from "react-slick";
 import React, { useState } from "react";
 import VoiceCard from "../VoiceCard";
+import { useScreenInfo } from "../../Utils/useScreenInfo";
 
 const temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function VoicesSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [data, setData] = useState([...temp]);
+  const { isMobile } = useScreenInfo();
 
   const settings = {
     dots: true,
@@ -35,7 +37,7 @@ export default function VoicesSlider() {
             justifyContent: "center",
             alignItems: "center",
             cursor: "pointer",
-            marginTop: 54,
+            marginTop: isMobile ? 34 : 54,
             marginRight: 5,
           }}
           key={index}
@@ -51,7 +53,7 @@ export default function VoicesSlider() {
         {data.map((ele, index) => {
           return (
             <React.Fragment key={index}>
-              <Box sx={{ width: "276px" }}>
+              <Box sx={{ width: {xs: "230px", md: "276px"} }}>
                 <VoiceCard
                   imageUrl={"/images/trump.png"}
                   title={"Juice wrld (Better)"}

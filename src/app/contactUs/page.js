@@ -17,7 +17,7 @@ export default function ContactUs() {
           alignItems: "center",
         }}
       >
-        <Box mt={"196px"}>
+        <Box mt={{ xs: "100px", md: "196px" }}>
           <Box
             component={"h1"}
             fontSize={{ xs: "24px", md: "45px" }}

@@ -16,6 +16,7 @@ export default function VoiceCard({ imageUrl, title, description }) {
         cursor: "pointer",
         backgroundColor: "rgba(255, 255, 255, 0.08)",
         borderRadius: "18px",
+        marginBottom: {xs: "20px"}
       }}
       onClick={() => {
         router.push(`ai-voices/${1}`);

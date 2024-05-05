@@ -48,7 +48,7 @@ export default function Drawer({ list }) {
               id={`panel${index + 1}-header`}
             >
               <Typography
-                sx={{ fontSize: "20px", fontWeight: 500, color: "#fff" }}
+                sx={{ fontSize: {xs: "12px", md: "20px"}, fontWeight: 500, color: "#fff" }}
                 component={"h3"}
               >
                 {faq.title}

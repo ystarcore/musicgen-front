@@ -6,8 +6,10 @@ import styles from "./component.module.css";
 
 export default function Footer() {
   return (
-    <footer
-      style={{
+    <Box
+      as={"footer"}
+      display={{ xs: "none", md: "block" }}
+      sx={{
         marginTop: "100px",
         backgroundImage: `url('/images/Footer.png')`,
         backgroundRepeat: "no-repeat",
@@ -157,6 +159,6 @@ export default function Footer() {
           &#169; Copyright 2024
         </Box>
       </Box>
-    </footer>
+    </Box>
   );
 }

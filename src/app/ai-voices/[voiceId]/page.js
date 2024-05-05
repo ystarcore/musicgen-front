@@ -40,17 +40,16 @@ export default function SingleVoice() {
         component={"section"}
         display={"flex"}
         sx={{
-          margin: {
-            sm: "25px 15px",
-            md: "50px 25px",
-            lg: "150px 50px 100px 50px",
-          },
-          flexDirection: { md: "row", lg: "row" },
+          margin: { xs: "50px 15px 25px 15px", md: "150px 50px 100px 50px" },
+          flexDirection: { xs: "column", md: "row" },
         }}
       >
         <Box
           display={"flex"}
           component={"div"}
+          sx={{
+            flexDirection: { xs: "column", md: "row" },
+          }}
           width={"100%"}
           justifyContent={"space-between"}
           fontWeight={500}
@@ -58,8 +57,11 @@ export default function SingleVoice() {
           <Box
             component={"div"}
             display={"flex"}
-            gap={"38px"}
             justifyContent={"space-between"}
+            sx={{
+              gap: { xs: "20px", md: "38px" },
+              flexDirection: { xs: "column", md: "row" },
+            }}
             alignItems={"center"}
             fontWeight={500}
             fontSize={"36px"}
@@ -76,18 +78,25 @@ export default function SingleVoice() {
                 }}
               />
             </Box>
-            <Box display={"flex"} flexDirection={"column"} gap={"7px"}>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              gap={"7px"}
+              sx={{
+                alignItems: { xs: "center", md: "start" },
+              }}
+            >
               <Box
                 component={"h1"}
                 fontWeight={900}
-                sx={{ fontSize: { sm: "16px", md: "26px", lg: "36px" } }}
+                sx={{ fontSize: { xs: "22px", md: "26px", lg: "36px" } }}
               >
                 AI Donald Trump Model
               </Box>
               <Box
                 component={"h2"}
                 fontWeight={500}
-                sx={{ fontSize: { sm: "8px", md: "10px", lg: "16px" } }}
+                sx={{ fontSize: { xs: "14px", lg: "16px" } }}
               >
                 Uploaded By{" "}
                 <Typography variant={"span"} color="#AD00FF">
@@ -98,12 +107,12 @@ export default function SingleVoice() {
           </Box>
           <Box
             display={"flex"}
-            gap={"30px"}
-            justifyContent={"space-between"}
             alignItems={"center"}
             fontWeight={500}
             fontSize={"14px"}
             sx={{
+              justifyContent: { xs: "space-around", md: "space-between" },
+              marginTop: { xs: "50px", md: 0 },
               gap: { sm: "10px", md: "20px" },
             }}
           >
@@ -176,7 +185,7 @@ export default function SingleVoice() {
         flexDirection={"column"}
         gap={"15px"}
         sx={{
-          margin: { sm: "25px 15px", md: "50px 25px", lg: "100px 50px" },
+          margin: { xs: "25px 15px", md: "50px 25px", lg: "100px 50px" },
         }}
       >
         <Box display={"flex"} alignItems={"center"} gap={"30px"}>
@@ -186,7 +195,7 @@ export default function SingleVoice() {
             onClick={() => setVoice("create")}
             sx={{
               opacity: voice !== "speech" ? "" : "60%",
-              fontSize: { sm: "15px", md: "20px", lg: "20px" },
+              fontSize: { xs: "12px", md: "20px", lg: "20px" },
               cursor: "pointer",
             }}
           >
@@ -198,7 +207,7 @@ export default function SingleVoice() {
             onClick={() => setVoice("speech")}
             sx={{
               opacity: voice === "speech" ? "" : "60%",
-              fontSize: { sm: "15px", md: "20px", lg: "20px" },
+              fontSize: { xs: "12px", md: "20px", lg: "20px" },
               cursor: "pointer",
             }}
           >
@@ -215,13 +224,21 @@ export default function SingleVoice() {
                 fontWeight={500}
                 fontSize={"14px"}
                 sx={{
-                  border: "2px dotted",
+                  border: "2px dashed",
                   borderRadius: "24px",
-                  height: { sm: "250px", md: "275px", lg: "325px" },
+                  paddingBlock: { xs: "30px", md: "50px" },
+                  height: "auto",
                 }}
               >
                 <Box display={"flex"} flexDirection={"column"} gap={"40px"}>
-                  <Box display={"flex"} gap={"40px"} alignItems={"center"}>
+                  <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                    sx={{
+                      flexDirection: { xs: "column", md: "row" },
+                      gap: { xs: "14px", md: "40px" },
+                    }}
+                  >
                     <Box>
                       <Image
                         height={58}
@@ -239,6 +256,7 @@ export default function SingleVoice() {
                       fontWeight={600}
                       sx={{
                         fontSize: { md: "28px", lg: "32px" },
+                        textAlign: {xs: "center"}
                       }}
                     >
                       Provide an input for Donald Trump
@@ -248,14 +266,20 @@ export default function SingleVoice() {
                     component={"div"}
                     display={"flex"}
                     justifyContent={"space-between"}
+                    sx={{
+                      flexDirection: { xs: "column", md: "row" },
+                      gap: "6px",
+                    }}
                     alignItems={"center"}
                   >
                     <Box
                       component={"div"}
                       display={"flex"}
+                      justifyContent={"center"}
                       alignItems={"center"}
                       gap={"20px"}
                       sx={{
+                        width: { xs: "auto", md: "auto" },
                         borderRadius: "16px",
                         backgroundColor: "#100F12",
                         padding: "11px 20px",
@@ -275,23 +299,21 @@ export default function SingleVoice() {
                         fontWeight={500}
                         sx={{
                           opacity: "50%",
-                          fontSize: { sm: "10px", md: "12px", lg: "16px" },
+                          fontSize: "16px",
                         }}
                       >
                         Paste a YouTube link...
                       </Box>
                     </Box>
-                    <Box
-                      sx={{ fontSize: { sm: "10px", md: "12px", lg: "16px" } }}
-                    >
-                      or
-                    </Box>
+                    <Box sx={{ fontSize: "16px" }}>or</Box>
                     <Box
                       component={"div"}
                       display={"flex"}
+                      justifyContent={"center"}
                       alignItems={"center"}
                       gap={"20px"}
                       sx={{
+                        width: { xs: "auto", md: "auto" },
                         borderRadius: "16px",
                         backgroundColor: "#100F12",
                         padding: "11px 20px",
@@ -312,7 +334,7 @@ export default function SingleVoice() {
                         fontWeight={500}
                         sx={{
                           opacity: "50%",
-                          fontSize: { sm: "10px", md: "12px", lg: "16px" },
+                          fontSize: "16px",
                         }}
                       >
                         Drop an audio file...
@@ -337,7 +359,7 @@ export default function SingleVoice() {
                   component={"h1"}
                   fontWeight={400}
                   sx={{
-                    fontSize: { sm: "15px", md: "20px", lg: "20px" },
+                    fontSize: { xs: "15px", md: "20px", lg: "20px" },
                   }}
                 >
                   Text to speech
@@ -364,12 +386,18 @@ export default function SingleVoice() {
                 <Box
                   component={"div"}
                   display={"flex"}
-                  justifyContent={"space-between"}
+                  sx={{
+                    flexDirection: { xs: "column", md: "row" },
+                    marginTop: { xs: "20px", md: 0 },
+                    justifyContent: "space-between",
+                    gap: "20px",
+                    alignItems: "center",
+                    width: {xs: "-webkit-fill-available", md: "auto"}
+                  }}
                 >
                   <Box
                     component={"div"}
                     display={"flex"}
-                    justifyContent={"space-between"}
                     sx={{
                       gap: "10px",
                     }}
@@ -389,9 +417,8 @@ export default function SingleVoice() {
                         />
                       }
                       sx={{
-                        fontSize: "16px",
-                        height: "45px",
-                        width: "132px",
+                        fontSize: { xs: "12px", md: "16px" },
+                        height: { xs: "33px", md: "45px" },
                         background: "#fff",
                         borderRadius: "10px",
                         fontWeight: 500,
@@ -417,9 +444,8 @@ export default function SingleVoice() {
                         />
                       }
                       sx={{
-                        fontSize: "16px",
-                        height: "45px",
-                        width: "132px",
+                        fontSize: { xs: "12px", md: "16px" },
+                        height: { xs: "33px", md: "45px" },
                         background: "#fff",
                         borderRadius: "10px",
                         fontWeight: 500,
@@ -445,9 +471,8 @@ export default function SingleVoice() {
                         />
                       }
                       sx={{
-                        fontSize: "16px",
-                        height: "45px",
-                        width: "132px",
+                        fontSize: { xs: "12px", md: "16px" },
+                        height: { xs: "33px", md: "45px" },
                         background: "#fff",
                         borderRadius: "10px",
                         fontWeight: 500,
@@ -463,9 +488,8 @@ export default function SingleVoice() {
                     <Button
                       variant="contained"
                       sx={{
-                        // p: 0,
-                        fontSize: "16px",
-                        height: "45px",
+                        fontSize: { xs: "12px", md: "16px" },
+                        height: { xs: "33px", md: "45px" },
                         width: "132px",
                         background: "#7E22CE",
                         borderRadius: "10px",
@@ -487,7 +511,7 @@ export default function SingleVoice() {
       <Box
         component={"section"}
         sx={{
-          margin: "50px",
+          margin: { xs: "20px", md: "50px" },
         }}
       >
         <Drawer list={faqs} />

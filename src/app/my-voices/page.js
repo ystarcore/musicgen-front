@@ -10,7 +10,7 @@ export default function ContactUs() {
   };
 
   return (
-    <Box as={"main"} mt={"164px"} mb={"450px"}>
+    <Box as={"main"} mt={{ xs: "100px", md: "164px" }} mb={"450px"}>
       <Box
         sx={{
           display: "flex",
@@ -82,7 +82,7 @@ export default function ContactUs() {
                 display={"flex"}
                 flexDirection={"column"}
                 alignItems={"center"}
-                gap={"55px"}
+                gap={{ xs: "30px", md: "55px" }}
               >
                 <Box
                   display={"flex"}
@@ -91,7 +91,7 @@ export default function ContactUs() {
                   flexDirection={"column"}
                   sx={{
                     maxWidth: "660px",
-                    width: "80%",
+                    width: { xs: "90%", md: "80%" },
                     height: "146px",
                     borderRadius: "10px",
                     background: "rgba(16, 15, 18, 1)",
@@ -120,6 +120,7 @@ export default function ContactUs() {
                   as={"p"}
                   fontWeight={700}
                   fontSize={"14px"}
+                  paddingInline={"30px"}
                   textAlign={"center"}
                   color={"rgba(255, 255, 255, 0.7)"}
                 >
@@ -131,11 +132,11 @@ export default function ContactUs() {
             UPLOADED: (
               <Box
                 as={"section"}
-                width={"75%"}
+                width={{ xs: "90%", md: "75%" }}
                 mt={"65px"}
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
                   gap: "20px",
                 }}
               >
@@ -206,7 +207,7 @@ export default function ContactUs() {
                 as={"h4"}
                 mt={"160px"}
                 fontWeight={700}
-                fontSize={"46px"}
+                fontSize={{ xs: "24px", md: "46px" }}
                 textAlign={"center"}
                 sx={{ maxWidth: "515px" }}
               >

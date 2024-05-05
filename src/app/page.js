@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TrendingSlider from "../components/Sliders/trendingSlider";
 import VoicesSlider from "../components/Sliders/voicesSlider";
+import { useScreenInfo } from "../Utils/useScreenInfo";
 
 const skills = [
   "Music",
@@ -25,12 +26,13 @@ const skills = [
 ];
 export default function Home() {
   const router = useRouter();
+  const { isMobile } = useScreenInfo();
 
   return (
     <main className={styles.main}>
       <Box
         component={"section"}
-        sx={{ height: { xs: `calc(100vh - 65px)`, md: `calc(693px - 65px)` } }}
+        sx={{ height: { xs: `100%`, md: `calc(693px - 65px)` } }}
       >
         <Box
           display={"flex"}
@@ -42,10 +44,12 @@ export default function Home() {
           sx={{
             borderBottomLeftRadius: "30px",
             borderBottomRightRadius: "30px",
+            paddingBottom: { xs: "40px", md: "auto" },
             backgroundImage: `url('/images/homeGradiant.png')`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 100%",
             backgroundColor: "black",
+            paddingTop: { xs: "100px" },
           }}
         >
           <Box
@@ -54,7 +58,12 @@ export default function Home() {
             fontWeight={500}
             fontSize={"54px"}
             sx={{
-              textAlign: { md: "center", lg: "center" },
+              textAlign: {
+                xs: "start",
+                sm: "start",
+                md: "center",
+                lg: "center",
+              },
             }}
           >
             Make my own AI song covers!
@@ -66,7 +75,12 @@ export default function Home() {
             fontSize={"18px"}
             mt={"24px"}
             sx={{
-              textAlign: { md: "center", lg: "center" },
+              textAlign: {
+                xs: "start",
+                sm: "start",
+                md: "center",
+                lg: "center",
+              },
             }}
           >
             The #1 platform for making high quality AI covers in seconds!
@@ -109,21 +123,42 @@ export default function Home() {
           <Box
             display={"flex"}
             gap={"14px"}
-            justifyContent={"center"}
             mt={"34px"}
             width={"90%"}
-            flexWrap={"wrap"}
+            sx={{
+              justifyContent: {
+                xs: "center",
+                sm: "center",
+                md: "center",
+                lg: "center",
+              },
+              flexWrap: "wrap", //{xs:'no-wrap',sm:'no-wrap',md:'wrap',lg:'wrap'},
+              // overflowX: {xs:'auto',sm:'auto',md:'hidden',lg:'hidden'},
+              padding: {
+                xs: "8px 16px",
+                sm: "8px 16px",
+                md: "8px 23px",
+                lg: "8px 23px",
+              },
+            }}
           >
             {skills.map((item, index) => (
               <Box
                 component={"h3"}
                 key={index}
                 textAlign={"center"}
-                padding={"8px 23px"}
                 color={"#7F00EE"}
                 backgroundColor={"#fff"}
                 borderRadius={"50px"}
                 fontWeight={500}
+                sx={{
+                  padding: {
+                    xs: "8px 16px",
+                    sm: "8px 16px",
+                    md: "8px 23px",
+                    lg: "8px 23px",
+                  },
+                }}
                 fontSize={"15px"}
               >
                 {item}
@@ -138,7 +173,8 @@ export default function Home() {
           flexDirection={"column"}
           sx={{
             padding: {
-              sm: "54px 0 54px 20px",
+              xs: "14px 0 34px 20px",
+              sm: "14px 0 34px 20px",
               md: "54px 0 54px 40px",
               lg: "54px 0 54px 60px",
             },
@@ -149,7 +185,7 @@ export default function Home() {
             marginTop={"50px"}
             component={"div"}
             sx={{
-              gap: "40px",
+              gap: "20px",
             }}
           >
             <TrendingSlider />
@@ -162,6 +198,7 @@ export default function Home() {
           flexDirection={"column"}
           sx={{
             padding: {
+              xs: "54px 0 54px 20px",
               sm: "54px 0 54px 20px",
               md: "54px 0 54px 40px",
               lg: "54px 0 54px 60px",
@@ -175,7 +212,7 @@ export default function Home() {
             alignItems={"center"}
             component={"div"}
             sx={{
-              paddingRight: { sm: "20px", md: "40px", lg: "60px" },
+              paddingRight: { xs: "20px", sm: "20px", md: "40px", lg: "60px" },
             }}
             width={"100%"}
             justifyContent={"space-between"}
@@ -185,7 +222,7 @@ export default function Home() {
               component={"h3"}
               fontWeight={500}
               sx={{
-                fontSize: { sm: "20px", md: "30px", lg: "36px" },
+                fontSize: { xs: "20px", sm: "20px", md: "30px", lg: "36px" },
               }}
             >
               Featured AI Voices
@@ -196,10 +233,10 @@ export default function Home() {
                 color: "white",
                 border: "1px solid white",
                 borderRadius: "3px",
-                fontSize: { sm: "12px", md: "12px", lg: "15px" },
+                fontSize: { xs: "10px", sm: "12px", md: "12px", lg: "15px" },
                 fontWeight: 500,
                 padding: "0 18px 0 18px",
-                height: { sm: "30px", md: "30px", lg: "34px" },
+                height: { xs: "30px", sm: "30px", md: "30px", lg: "34px" },
               }}
               onClick={() => {
                 router.push(`ai-voices`);
@@ -216,8 +253,13 @@ export default function Home() {
       <Box
         component={"section"}
         sx={{
-          height: "330px",
-          padding: { md: "54px 60px", lg: "54px 60px" },
+          height: "auto",
+          padding: {
+            xs: "34px 20px 0",
+            sm: "44px 40px 0",
+            md: "54px 60px",
+            lg: "54px 60px",
+          },
         }}
       >
         <Box
@@ -226,18 +268,25 @@ export default function Home() {
           justifyContent={"space-between"}
           sx={{
             borderRadius: "32px",
-            padding: { md: "45px 0 54px 60px", lg: "45px 0 54px 60px" },
+            padding: {
+              xs: "27px 0 34px 20px",
+              sm: "27px 0 44px 40px",
+              md: "45px 0 54px 60px",
+              lg: "45px 0 54px 60px",
+            },
             height: "222px",
             position: "relative",
+            background: isMobile
+              ? "linear-gradient(to right, rgba(46, 16, 101, 1), rgba(90, 39, 180, 1))"
+              : "linear-gradient(to right,rgba(46, 16, 101, 1) ,rgba(91, 33, 182, 1))",
           }}
-          backgroundColor={"rgba(255, 255, 255, 0.08)"}
         >
           <Box
             sx={{
               position: "absolute",
               right: { md: "3%", lg: "5%" },
               bottom: 0,
-              display: { md: "block", lg: "block" },
+              display: { xs: "none", sm: "none", md: "block", lg: "block" },
             }}
           >
             <Image
@@ -258,7 +307,7 @@ export default function Home() {
             <Box
               fontWeight={700}
               sx={{
-                fontSize: { md: "36px", lg: "36px" },
+                fontSize: { xs: "26px", sm: "34px", md: "36px", lg: "36px" }
               }}
             >
               Create your own custom voice!

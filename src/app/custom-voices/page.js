@@ -37,15 +37,20 @@ export default function CustomVoice() {
     <main>
       <Box
         margin={"auto"}
-        mt={"186px"}
+        mt={{ xs: "100px", md: "186px" }}
         display={"flex"}
         alignItems={"center"}
         flexDirection={"column"}
-        gap={"50px"}
+        gap={{ xs: "90px", md: "50px" }}
         maxWidth="1220px"
         width={"85%"}
       >
-        <Box as={"h1"} fontWeight={500} fontSize={"48px"} textAlign={"center"}>
+        <Box
+          as={"h1"}
+          fontWeight={500}
+          fontSize={{ xs: "36px", md: "48px" }}
+          textAlign={"center"}
+        >
           Convert any voice to any voice...
         </Box>
         <Box
@@ -53,16 +58,18 @@ export default function CustomVoice() {
           as={"section"}
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
+            gap: { xs: "30px", md: "" },
           }}
         >
           <Box>
             <Box
               as={"h2"}
               fontWeight={700}
-              fontSize={"48px"}
-              textAlign={"start"}
+              fontSize={{ xs: "24px", md: "48px" }}
+              textAlign={{ xs: "center", md: "start" }}
             >
               Custom Voices
             </Box>
@@ -71,6 +78,7 @@ export default function CustomVoice() {
               fontWeight={500}
               fontSize={"16px"}
               textAlign={"center"}
+              mt={{ xs: "11px", md: "16px" }}
             >
               Share to the community or keep private for your own use.
             </Box>
@@ -83,9 +91,9 @@ export default function CustomVoice() {
             flexDirection="column"
             justifyContent="center"
             sx={{
-              height: "325px",
+              height: { xs: "240px", md: "325px" },
               maxWidth: "675px",
-              width: "47%",
+              width: { xs: "100%", md: "47%" },
               border: "2px solid #D6D6D6 doted",
               borderStyle: "dashed",
               borderRadius: "24px",
@@ -116,14 +124,20 @@ export default function CustomVoice() {
               align="center"
               className="drag-text"
               fontWeight={600}
-              fontSize={"24px"}
+              fontSize={{ xs: "20px", md: "24px" }}
             >
               Drop your voice here
             </Box>
           </Box>
         </Box>
       </Box>
-      <Box width={"100%"} height={"262px"} position="relative" my={"50px"}>
+      <Box
+        display={{ xs: "none", md: "block" }}
+        width={"100%"}
+        height={"262px"}
+        position="relative"
+        my={"50px"}
+      >
         <Image
           src={"/images/lineGradiant.svg"}
           alt={"background"}
@@ -137,6 +151,7 @@ export default function CustomVoice() {
         fontSize={"48px"}
         textAlign={"center"}
         mb={"24px"}
+        mt={{ xs: "70px", md: "" }}
       >
         FAQs
       </Box>
@@ -146,7 +161,7 @@ export default function CustomVoice() {
         margin={"auto"}
         border={"1px solid #fff"}
         borderRadius={"20px"}
-        padding={"40px"}
+        padding={{ xs: "20px 16px", md: "40px" }}
       >
         <Drawer list={faqs} />
       </Box>

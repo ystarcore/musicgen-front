@@ -45,7 +45,11 @@ export default function Plans() {
       <main>
         <Box
           as={"section"}
-          sx={{ maxWidth: "1035px", margin: "auto", marginTop: "235px" }}
+          sx={{
+            maxWidth: "1035px",
+            margin: "auto",
+            marginTop: { xs: "100px", md: "235px" },
+          }}
           display={"flex"}
           gap={"60px"}
           flexDirection={"column"}

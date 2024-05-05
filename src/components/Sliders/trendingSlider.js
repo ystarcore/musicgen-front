@@ -1,9 +1,12 @@
 "use client";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import Slider from "react-slick";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import VoiceCard from "../VoiceCard";
+import { useRouter } from "next/navigation";
+import styles from "../component.module.css";
+import { useScreenInfo } from "../../Utils/useScreenInfo";
 
 const temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -12,6 +15,7 @@ export default function TrendingSlider() {
   let timeoutId;
   const [activeSlide, setActiveSlide] = useState(0);
   const [data, setData] = useState([...temp]);
+  const { isMobile } = useScreenInfo();
 
   const settings = {
     dots: true,
@@ -42,7 +46,7 @@ export default function TrendingSlider() {
             justifyContent: "center",
             alignItems: "center",
             cursor: "pointer",
-            marginTop: 54,
+            marginTop: isMobile ? 30 : 54,
             marginRight: 5,
           }}
           key={index}
@@ -71,7 +75,14 @@ export default function TrendingSlider() {
         {data.map((ele, index) => {
           return (
             <React.Fragment key={index}>
-              {activeSlide === index ? (
+              {isMobile ? (
+                <TrendyCard
+                  isTrendy={activeSlide === index}
+                  imageUrl={"/images/trump.png"}
+                  title={"Juice wrld (Better)"}
+                  description={"15.5K uses · 286 likes · Logpoma"}
+                />
+              ) : activeSlide === index ? (
                 <ExpandedCard />
               ) : (
                 <Box sx={{ width: "276px" }}>
@@ -89,7 +100,74 @@ export default function TrendingSlider() {
     </>
   );
 }
-
+const TrendyCard = ({ imageUrl, title, description, isTrendy }) => {
+  const router = useRouter();
+  return (
+    <Card
+      className={styles.imageContainer}
+      sx={{
+        width: "250px",
+        boxShadow: "none",
+        cursor: "pointer",
+        backgroundColor: "rgba(255, 255, 255, 0.08)",
+        borderRadius: "18px",
+      }}
+      onClick={() => {
+        router.push(`ai-voices/${1}`);
+      }}
+    >
+      <Box sx={{ position: "relative", width: "100%", aspectRatio: "1.88" }}>
+        <Image
+          src={imageUrl}
+          fill
+          className={styles.image}
+          title="green iguana"
+          alt="VoiceCard"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        {isTrendy && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              position: "absolute",
+              right: "3%",
+              top: "3%",
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                fontSize: "14px",
+                height: "34px",
+                width: "110px",
+                background: "#7E22CE",
+                borderRadius: "8px",
+                fontWeight: 700,
+                color: "#fff",
+                textTransform: "none",
+                padding: "5px 16px 5px 16px",
+                "&.MuiButton-root:hover": { background: "#7E22CE" },
+              }}
+            >
+              🔥 Trendy{" "}
+            </Button>
+          </Box>
+        )}
+      </Box>
+      <CardContent
+        sx={{ paddingInline: "30px", paddingBlock: "16px", color: "white" }}
+      >
+        <Typography fontSize={"20px"} fontWeight={500} as="h4">
+          {title}
+        </Typography>
+        <Typography fontSize={"12px"} mt={"5px"} fontWeight={400}>
+          {description}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
 const ExpandedCard = (props) => {
   return (
     <Box
