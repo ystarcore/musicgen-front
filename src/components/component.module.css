@@ -18,3 +18,8 @@
 .imageContainer:hover .image {
   transform: scale(1.1);
 }
+.icon{
+  color: white;
+  z-index: 3;
+  
+}

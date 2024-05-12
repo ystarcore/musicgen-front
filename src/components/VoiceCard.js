@@ -1,12 +1,28 @@
 "use client";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import styles from "./component.module.css";
+import { PlayCircle } from "@mui/icons-material";
 
-export default function VoiceCard({ imageUrl, title, description }) {
+export default function VoiceCard({ imageUrl, title, description, audioUrl }) {
   const router = useRouter();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audio = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return new Audio(audioUrl);
+    }
+    return null;
+  }, [audioUrl]);
+  const toggleAudio = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
   return (
     <Card
       className={styles.imageContainer}
@@ -16,7 +32,7 @@ export default function VoiceCard({ imageUrl, title, description }) {
         cursor: "pointer",
         backgroundColor: "rgba(255, 255, 255, 0.08)",
         borderRadius: "18px",
-        marginBottom: {xs: "20px"}
+        marginBottom: { xs: "20px" },
       }}
       onClick={() => {
         router.push(`ai-voices/${1}`);
@@ -29,9 +45,16 @@ export default function VoiceCard({ imageUrl, title, description }) {
           aspectRatio: { xs: "1.55", md: "1.24" },
         }}
       >
+        <IconButton size="large" onMouseDown={toggleAudio}>
+          <PlayCircle className={styles.icon} sx={{ fontSize: 40 }}/>
+        </IconButton>
         <Image
           src={imageUrl}
           fill
+          onError={(e) => {
+            e.target.onerror = null; // Prevent infinite loop
+            e.target.src = "/images/juice.png"; // Display a fallback image
+          }}
           className={styles.image}
           title="green iguana"
           alt="VoiceCard"

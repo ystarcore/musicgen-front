@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import {
   Box,
@@ -8,6 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import VoiceCard from "../../components/VoiceCard";
+import { promises as fs } from "fs";
 const skills = [
   "Music",
   "Cartoon",
@@ -20,7 +20,12 @@ const skills = [
   "Public figure",
 ];
 
-export default function AiVoiceList() {
+export default async function AiVoiceList() {
+  const file = await fs.readFile(
+    process.cwd() + "/src/json/voices.json",
+    "utf8"
+  );
+  let data = JSON.parse(file);
   return (
     <>
       <main>
@@ -132,17 +137,45 @@ export default function AiVoiceList() {
                 md: "repeat(auto-fill,315px)",
               },
               gap: { xs: "20px", md: "40px" },
-              display: {xs: "block", md: "grid"},
+              display: { xs: "block", md: "grid" },
             }}
           >
-            {[...Array(33).keys()].map((ele, index) => (
-              <VoiceCard
-                key={index}
-                description={"15.5K uses · 286 likes · Logpoma"}
-                title={"Juice wrld (Better)"}
-                imageUrl={"/images/imageOne.png"}
-              />
-            ))}
+            {data?.data.map((detail, index) => {
+              let parsedUrl = new URL(detail.imageUrl);
+              let baseUrl =
+                parsedUrl.protocol + "//" + parsedUrl.host + parsedUrl.pathname;
+
+              
+              
+            
+              // Check if the file extension is .jpeg or .png
+              if (
+                detail.imageUrl.endsWith(".jpeg") ||
+                detail.imageUrl.endsWith(".png")
+              ) {
+                baseUrl = baseUrl.split(".")[0] + ".jpeg"; // Change the extension to .jpeg
+              }
+              let tagsString = detail.tags.join(", ");
+
+             // Parse the audio URL
+              let baseAudioUrl = "";
+              if (detail.demoUrl) {
+                let parsedAudioUrl = new URL(detail.demoUrl);
+                baseAudioUrl = `${parsedAudioUrl.protocol}//${
+                  parsedAudioUrl.host
+                }${parsedAudioUrl.pathname.split(".wav")[0]}.wav`;
+              }
+              console.log(baseAudioUrl)
+              return (
+                <VoiceCard
+                  key={index}
+                  description={`${tagsString}`}
+                  title={detail.title}
+                  imageUrl={baseUrl}
+                  audioUrl={baseAudioUrl}
+                />
+              );
+            })}
           </Box>
         </Box>
       </main>
