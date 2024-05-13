@@ -165,7 +165,6 @@ export default async function AiVoiceList() {
                   parsedAudioUrl.host
                 }${parsedAudioUrl.pathname.split(".wav")[0]}.wav`;
               }
-              console.log(baseAudioUrl)
               return (
                 <VoiceCard
                   key={index}

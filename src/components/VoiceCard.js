@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import styles from "./component.module.css";
-import { PlayCircle } from "@mui/icons-material";
+import { PauseCircle, PlayCircle } from "@mui/icons-material";
 
 export default function VoiceCard({ imageUrl, title, description, audioUrl }) {
   const router = useRouter();
@@ -46,7 +46,11 @@ export default function VoiceCard({ imageUrl, title, description, audioUrl }) {
         }}
       >
         <IconButton size="large" onMouseDown={toggleAudio}>
-          <PlayCircle className={styles.icon} sx={{ fontSize: 40 }}/>
+          {isPlaying ? (
+            <PauseCircle className={styles.icon} sx={{ fontSize: 40 }} />
+          ) : (
+            <PlayCircle className={styles.icon} sx={{ fontSize: 40 }} />
+          )}
         </IconButton>
         <Image
           src={imageUrl}
