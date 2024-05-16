@@ -141,37 +141,13 @@ export default async function AiVoiceList() {
             }}
           >
             {data?.data.map((detail, index) => {
-              let parsedUrl = new URL(detail.imageUrl);
-              let baseUrl =
-                parsedUrl.protocol + "//" + parsedUrl.host + parsedUrl.pathname;
-
-              
-              
-            
-              // Check if the file extension is .jpeg or .png
-              if (
-                detail.imageUrl.endsWith(".jpeg") ||
-                detail.imageUrl.endsWith(".png")
-              ) {
-                baseUrl = baseUrl.split(".")[0] + ".jpeg"; // Change the extension to .jpeg
-              }
-              let tagsString = detail.tags.join(", ");
-
-             // Parse the audio URL
-              let baseAudioUrl = "";
-              if (detail.demoUrl) {
-                let parsedAudioUrl = new URL(detail.demoUrl);
-                baseAudioUrl = `${parsedAudioUrl.protocol}//${
-                  parsedAudioUrl.host
-                }${parsedAudioUrl.pathname.split(".wav")[0]}.wav`;
-              }
               return (
                 <VoiceCard
                   key={index}
-                  description={`${tagsString}`}
-                  title={detail.title}
-                  imageUrl={baseUrl}
-                  audioUrl={baseAudioUrl}
+                  description={detail.description}
+                  title={detail.name}
+                  imageUrl={`/image${detail.image}`}
+                  audioUrl={`/songs${detail.audio}`}
                 />
               );
             })}
