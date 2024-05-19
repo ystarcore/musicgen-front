@@ -7,6 +7,7 @@ import Drawer from "../../../components/Drawer";
 import VoiceCard from "../../../components/VoiceCard";
 import voiceData from "../data.js";
 import faqsData from "./faqsData.js";
+import VoiceCardAI from "./VoiceCardAI";
 
 export default function SingleVoice() {
   const params = useParams();
@@ -14,6 +15,7 @@ export default function SingleVoice() {
   console.log(key);
 
   const [voice, setVoice] = useState("create");
+
   console.log(voiceData.id);
   const selectedData = voiceData.find(
     (data) => String(data.id) === String(key)
@@ -63,7 +65,7 @@ export default function SingleVoice() {
                   borderRadius: "100px",
                 }}
               /> */}
-              <VoiceCard
+              <VoiceCardAI
                 key={selectedData.id}
                 Id={selectedData.id}
                 title={selectedData.title}

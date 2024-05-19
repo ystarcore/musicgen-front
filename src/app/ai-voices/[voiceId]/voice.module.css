@@ -1,0 +1,24 @@
+.linkLinks {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.linkHeader {
+  font-size: 15px;
+  font-weight: 500;
+}
+.imageContainer {
+  overflow: hidden;
+}
+
+.image {
+  transition: transform 0.3s ease;
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.1);
+}
+.icon {
+  color: gray;
+  z-index: 3;
+}

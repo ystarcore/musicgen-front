@@ -3,61 +3,36 @@ import React, { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
-import styles from "./component.module.css";
+import styles from "./voice.module.css";
 import { PauseCircle, PlayCircle } from "@mui/icons-material";
 
-export default function VoiceCard({
+export default function VoiceCardAI({
   id,
   imageUrl,
   title,
   description,
   audioUrl,
   isMedia,
-  isPlaying,
-  onPlay,
 }) {
   const router = useRouter();
-  //const [isPlay, setIsPlay] = useState(false);
-  //const [Id, setId] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // const audio = useMemo(() => {
-  //   if (typeof window !== "undefined") {
-  //     return new Audio(audioUrl);
-  //   }
-  //   return null;
-  // }, [audioUrl]);
+  const audio = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return new Audio(audioUrl);
+    }
+    return null;
+  }, [audioUrl]);
 
-  const handlePlay = (e) => {
-    e.stopPropagation(); // Prevent card click
-    onPlay(id, audioUrl);
+  const toggleAudio = () => {
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play();
+      setIsPlaying(true);
+    }
   };
-
-  // const toggleAudio = () => {
-  //   if (isPlay) {
-  //     audio.pause();
-  //     setIsPlay(false);
-  //   } else {
-  //     audio.play();
-  //     setIsPlay(true);
-  //   }
-  // };
-  // const toggleAudio = () => {
-  //   const audios = document.querySelectorAll("audio");
-  //   audios.forEach((audio) => {
-  //     if (audio.id === id) {
-  //       if (audio.paused) {
-  //         audio.play();
-  //         setIsPlaying(true);
-  //       } else {
-  //         audio.pause();
-  //         setIsPlaying(false);
-  //       }
-  //     } else {
-  //       audio.pause();
-  //       setIsPlaying(false);
-  //     }
-  //   });
-  // };
 
   return (
     <Card
@@ -70,9 +45,6 @@ export default function VoiceCard({
         borderRadius: "18px",
         marginBottom: { xs: "20px" },
       }}
-      onClick={() => {
-        router.push(`ai-voices/${id}`);
-      }}
     >
       <Box
         sx={{
@@ -82,8 +54,7 @@ export default function VoiceCard({
         }}
       >
         {isMedia && (
-          // <IconButton size="large" onMouseDown={toggleAudio}>
-          <IconButton size="large" onMouseDown={handlePlay}>
+          <IconButton size="large" onMouseDown={toggleAudio}>
             {isPlaying ? (
               <PauseCircle
                 className={styles.icon}

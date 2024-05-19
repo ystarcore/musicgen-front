@@ -1,3 +1,5 @@
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   Box,
@@ -7,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import VoiceCard from "../../components/VoiceCard";
-import { promises as fs } from "fs";
+//import { promises as fs } from "fs";
 import { title } from "process";
 import voiceData from "../ai-voices/data.js";
 const skills = [
@@ -22,7 +24,27 @@ const skills = [
   "Public figure",
 ];
 
-export default async function AiVoiceList() {
+export default function AiVoiceList() {
+  const [currentAudio, setCurrentAudio] = useState(null);
+  const [playingId, setPlayingId] = useState(null);
+  const handlePlayAudio = (id, audioUrl) => {
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    if (playingId === id) {
+      setCurrentAudio(null);
+      setPlayingId(null);
+      return;
+    }
+    const newAudio = new Audio(audioUrl);
+    newAudio.play();
+    setCurrentAudio(newAudio);
+    setPlayingId(id);
+
+    newAudio.onended = () => {
+      setPlayingId(null);
+    };
+  };
   return (
     <>
       <main>
@@ -141,12 +163,14 @@ export default async function AiVoiceList() {
               return (
                 <VoiceCard
                   key={data.id}
-                  Id={data.id}
+                  id={data.id}
                   // description={data.detail}
                   title={data.title}
                   imageUrl={data.img}
                   audioUrl={data.audio}
-                  isMedia={false}
+                  isMedia={true}
+                  isPlaying={playingId === data.id}
+                  onPlay={handlePlayAudio}
                 />
               );
             })}
