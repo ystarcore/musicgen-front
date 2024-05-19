@@ -1,39 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Drawer from "../../../components/Drawer";
-
-const faqs = [
-  {
-    title: "How do I make AI Donald Trump covers?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
-  {
-    title: "What input can I use for my AI Donald Trump covers?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
-  {
-    title: "How long will my AI Donald Trump cover take?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
-  {
-    title: "How many credits does each AI Donald Trump cover use?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
-  {
-    title: "Do I need to upload an acapella?",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-  },
-];
+import VoiceCard from "../../../components/VoiceCard";
+import voiceData from "../data.js";
+import faqsData from "./faqsData.js";
 
 export default function SingleVoice() {
+  const params = useParams();
+  const key = params.voiceId;
+  console.log(key);
+
   const [voice, setVoice] = useState("create");
+  console.log(voiceData.id);
+  const selectedData = voiceData.find(
+    (data) => String(data.id) === String(key)
+  );
+  console.log(selectedData);
+
   return (
     <>
       <Box
@@ -67,7 +53,7 @@ export default function SingleVoice() {
             fontSize={"36px"}
           >
             <Box>
-              <Image
+              {/* <Image
                 height={130}
                 src={"/images/imageOne.png"}
                 width={130}
@@ -76,6 +62,14 @@ export default function SingleVoice() {
                 style={{
                   borderRadius: "100px",
                 }}
+              /> */}
+              <VoiceCard
+                key={selectedData.id}
+                Id={selectedData.id}
+                title={selectedData.title}
+                imageUrl={selectedData.img}
+                audioUrl={selectedData.audio}
+                isMedia={true}
               />
             </Box>
             <Box
@@ -91,7 +85,8 @@ export default function SingleVoice() {
                 fontWeight={900}
                 sx={{ fontSize: { xs: "22px", md: "26px", lg: "36px" } }}
               >
-                AI Donald Trump Model
+                {/* AI Donald Trump Model */}
+                AI {selectedData.title} Model
               </Box>
               <Box
                 component={"h2"}
@@ -256,10 +251,10 @@ export default function SingleVoice() {
                       fontWeight={600}
                       sx={{
                         fontSize: { md: "28px", lg: "32px" },
-                        textAlign: {xs: "center"}
+                        textAlign: { xs: "center" },
                       }}
                     >
-                      Provide an input for Donald Trump
+                      Provide an input for {selectedData.title}
                     </Box>
                   </Box>
                   <Box
@@ -392,7 +387,7 @@ export default function SingleVoice() {
                     justifyContent: "space-between",
                     gap: "20px",
                     alignItems: "center",
-                    width: {xs: "-webkit-fill-available", md: "auto"}
+                    width: { xs: "-webkit-fill-available", md: "auto" },
                   }}
                 >
                   <Box
@@ -514,7 +509,7 @@ export default function SingleVoice() {
           margin: { xs: "20px", md: "50px" },
         }}
       >
-        <Drawer list={faqs} />
+        <Drawer list={faqsData(selectedData.title)} />
       </Box>
     </>
   );
