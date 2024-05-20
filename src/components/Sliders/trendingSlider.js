@@ -7,14 +7,13 @@ import VoiceCard from "../VoiceCard";
 import { useRouter } from "next/navigation";
 import styles from "../component.module.css";
 import { useScreenInfo } from "../../Utils/useScreenInfo";
-
-const temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import voiceData from "@/app/ai-voices/data";
 
 export default function TrendingSlider() {
   const slide = useRef(null);
   let timeoutId;
   const [activeSlide, setActiveSlide] = useState(0);
-  const [data, setData] = useState([...temp]);
+  const [dataSet, setDataSet] = useState([...voiceData]);
   const { isMobile } = useScreenInfo();
 
   const settings = {
@@ -72,14 +71,14 @@ export default function TrendingSlider() {
   return (
     <>
       <Slider {...settings} ref={slide}>
-        {data.map((ele, index) => {
+        {dataSet.map((data, index) => {
           return (
             <React.Fragment key={index}>
               {isMobile ? (
                 <TrendyCard
                   isTrendy={activeSlide === index}
-                  imageUrl={"/images/trump.png"}
-                  title={"Juice wrld (Better)"}
+                  imageUrl={data.img}
+                  title={data.title}
                   description={"15.5K uses · 286 likes · Logpoma"}
                 />
               ) : activeSlide === index ? (
@@ -87,9 +86,11 @@ export default function TrendingSlider() {
               ) : (
                 <Box sx={{ width: "276px" }}>
                   <VoiceCard
-                    imageUrl={"/images/trump.png"}
-                    title={"Juice wrld (Better)"}
-                    description={"15.5K uses · 286 likes · Logpoma"}
+                    key={data.id}
+                    id={data.id}
+                    // description={data.detail}
+                    title={data.title}
+                    imageUrl={data.img}
                   />
                 </Box>
               )}

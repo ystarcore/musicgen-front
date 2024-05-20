@@ -4,12 +4,11 @@ import Slider from "react-slick";
 import React, { useState } from "react";
 import VoiceCard from "../VoiceCard";
 import { useScreenInfo } from "../../Utils/useScreenInfo";
-
-const temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import voiceData from "@/app/ai-voices/data";
 
 export default function VoicesSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [data, setData] = useState([...temp]);
+  const [dataSet, setDataSet] = useState([...voiceData]);
   const { isMobile } = useScreenInfo();
 
   const settings = {
@@ -50,14 +49,16 @@ export default function VoicesSlider() {
   return (
     <>
       <Slider {...settings}>
-        {data.map((ele, index) => {
+        {dataSet.map((data, index) => {
           return (
             <React.Fragment key={index}>
-              <Box sx={{ width: {xs: "230px", md: "276px"} }}>
+              <Box sx={{ width: { xs: "230px", md: "276px" } }}>
                 <VoiceCard
-                  imageUrl={"/images/trump.png"}
-                  title={"Juice wrld (Better)"}
-                  description={"15.5K uses · 286 likes · Logpoma"}
+                  key={data.id}
+                  id={data.id}
+                  // description={data.detail}
+                  title={data.title}
+                  imageUrl={data.img}
                 />
               </Box>
             </React.Fragment>
